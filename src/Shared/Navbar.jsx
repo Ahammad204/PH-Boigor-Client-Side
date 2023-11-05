@@ -13,8 +13,10 @@ const Navbar = () => {
         <li ><NavLink to="/">Home</NavLink></li>
         {user && <>
 
-            <li><NavLink to="/dashboard">DashBoard</NavLink></li>
             <li><NavLink to="/borrowedBook">Borrowed Book</NavLink></li>
+            <li><NavLink to="/addBook">Add Book</NavLink></li>
+            <li><NavLink to="/allBook">All Book</NavLink></li>
+            <li><NavLink to="/addCategory">Add Category</NavLink></li>
 
         </>}
 
@@ -65,7 +67,7 @@ const Navbar = () => {
                             </ul>
                         </div>
                             :
-                            <Link to="/login"><button className="btn text-white border-none bg-[#ED1D26] hover:bg-[#ED1D26]">Login Now</button></Link>
+                            <Link to="/login"><button className="btn text-white border-none bg-[#E59285] hover:bg-[#E59285]">Login Now</button></Link>
                     }
                 </div>
             </div>

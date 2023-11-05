@@ -34,7 +34,7 @@ export default function Banner() {
         <SwiperSlide>
           <div className='md:flex justify-between items-center'>
             <div>
-                <h1 className='text-4xl  md:text-7xl font-bold ml-14 md:mt-10'>Buy <span className='text-[#E59285]'>Your</span> <br /> Favorite <span className='text-[#E59285]'>Book</span> <br /> From <span className='text-[#E59285]'>PHBoigor</span></h1>
+                <h1 className='text-4xl  md:text-7xl font-bold ml-14 md:mt-10'>Find <span className='text-[#E59285]'>Your</span> <br /> Favorite <span className='text-[#E59285]'>Book</span> <br /> From <span className='text-[#E59285]'>PHBoigor</span></h1>
                 <button className="btn btn-outline  ml-14 mt-10 hover:bg-[#E59285] hover:border-none">Buy Now</button>
             </div>
             <div className='md:w-96 md:h-96'>
@@ -45,7 +45,7 @@ export default function Banner() {
         <SwiperSlide>
           <div className='md:flex justify-between items-center'>
             <div>
-            <h1 className='text-4xl  md:text-7xl font-bold ml-14 md:mt-10'><span className='text-[#E59285]'>BOIGHOR</span> <br /> The Best <span className='text-[#E59285]'>Online</span><br /> Book <span className='text-[#E59285]'>Shop</span></h1>
+            <h1 className='text-4xl  md:text-7xl font-bold ml-14 md:mt-10'><span className='text-[#E59285]'>BOIGHOR</span> <br /> The Best <span className='text-[#E59285]'>Online</span><br /> Book <span className='text-[#E59285]'>Library</span></h1>
                 <button className="btn btn-outline  ml-14 mt-10 hover:bg-[#E59285] hover:border-none">Buy Now</button>
             </div>
             <div className='md:w-96 md:h-96'>
@@ -56,7 +56,7 @@ export default function Banner() {
         <SwiperSlide>
           <div className='md:flex justify-between items-center'>
             <div>
-            <h1 className='text-4xl  md:text-7xl font-bold ml-14 md:mt-10'><span className='text-[#E59285]'>BOIGHOR</span> <br /> The Best <span className='text-[#E59285]'>Online</span><br /> Book <span className='text-[#E59285]'>Shop</span></h1>
+            <h1 className='text-4xl  md:text-7xl font-bold ml-14 md:mt-10'><span className='text-[#E59285]'>BOIGHOR</span> <br /> The Best <span className='text-[#E59285]'>Online</span><br /> Book <span className='text-[#E59285]'>Library</span></h1>
                 <button className="btn btn-outline  ml-14 mt-10 hover:bg-[#E59285] hover:border-none">Buy Now</button>
             </div>
             <div className='md:w-96 md:h-96 mr-10'>

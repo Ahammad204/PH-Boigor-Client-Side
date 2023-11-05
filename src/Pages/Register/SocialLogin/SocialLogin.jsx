@@ -37,10 +37,10 @@ const SocialLogin = () => {
                 <div className="flex justify-around">
                     <button
                         onClick={() => handleSocialLogin(googleLogin)}
-                        className="btn text-white border-none bg-[#ED1D26] "><FaGoogle className="text-2xl"></FaGoogle>Google</button>
+                        className="btn text-white border-none bg-[#E59285] hover:bg-[#E59285]  "><FaGoogle className="text-2xl"></FaGoogle>Google</button>
                     <button
                         onClick={() => handleSocialLogin(githubLogin)}
-                        className="btn text-white border-none bg-[#ED1D26]"><FaGithub className="text-2xl"></FaGithub> Github</button>
+                        className="btn text-white border-none bg-[#E59285] hover:bg-[#E59285] "><FaGithub className="text-2xl"></FaGithub> Github</button>
 
                 </div>
             </>

@@ -73,11 +73,11 @@ const Login = () => {
                         </label>
                     </div>
                     <div className="form-control mt-6">
-                        <button className="btn btn-primary text-white border-none bg-[#ED1D26] hover:bg-[#ED1D26]">Login</button>
+                        <button className="btn btn-primary text-white border-none bg-[#E59285]  hover:bg-[#E59285] ">Login</button>
                     </div>
                      <SocialLogin></SocialLogin> 
                 </form>
-                <p className="text-center mt-4">Do not have an account? <Link className="text-[#ED1D26] font-bold" to="/register">Register</Link></p>
+                <p className="text-center mt-4">Do not have an account? <Link className="text-[#E59285]  font-bold" to="/register">Register</Link></p>
 
 
             </div>

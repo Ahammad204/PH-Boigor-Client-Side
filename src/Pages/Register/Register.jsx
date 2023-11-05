@@ -100,12 +100,12 @@ const Register = () => {
                         </label>
                     </div>
                     <div className="form-control mt-6">
-                        <button className="btn btn-primary text-white border-none bg-[#ED1D26] hover:bg-[#ED1D26]">Register</button>
+                        <button className="btn btn-primary text-white border-none bg-[#E59285]  hover:bg-[#E59285] ">Register</button>
                     </div>
                     <SocialLogin></SocialLogin>
                    
                 </form>
-                <p className="text-center mt-4">Already have an account? <Link className="text-[#ED1D26] font-bold" to="/login">Login</Link></p>
+                <p className="text-center mt-4">Already have an account? <Link className="text-[#E59285]  font-bold" to="/login">Login</Link></p>
             </div>
         </div>
     );
