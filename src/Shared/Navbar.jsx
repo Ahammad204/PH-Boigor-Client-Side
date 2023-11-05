@@ -11,9 +11,12 @@ const Navbar = () => {
     const navLink = <>
 
         <li ><NavLink to="/">Home</NavLink></li>
-        <li><NavLink to="/addBook">Add Book</NavLink></li>
-        <li><NavLink to="/allBook">All Book</NavLink></li>
-        <li><NavLink to="/borrowedBook">Borrowed Book</NavLink></li>
+        {user && <>
+
+            <li><NavLink to="/dashboard">DashBoard</NavLink></li>
+            <li><NavLink to="/borrowedBook">Borrowed Book</NavLink></li>
+
+        </>}
 
 
     </>
@@ -38,7 +41,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end md:gap-3">
-                  
+
                     {
                         user?.email ? <div className="dropdown dropdown-end">
                             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">

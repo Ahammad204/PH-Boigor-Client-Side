@@ -1,6 +1,6 @@
 
 
-const AddBook = () => {
+const UpdateBooks = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const AddBook = () => {
     );
 };
 
-export default AddBook;
+export default UpdateBooks;
