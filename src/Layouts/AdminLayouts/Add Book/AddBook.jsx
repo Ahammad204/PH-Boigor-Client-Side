@@ -88,8 +88,8 @@ const AddBook = () => {
                                 <option disabled selected>Choose your Book Category</option>
                                 <option>Fiction</option>
                                 <option>Mystery</option>
-                                <option>Science Fiction</option>
-                                <option>Children Books</option>
+                                <option>Science_Fiction</option>
+                                <option>Children_Books</option>
                                 <option>Horror</option>
                                 <option>Biography</option>
                             </select>
