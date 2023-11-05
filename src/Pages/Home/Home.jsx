@@ -2,6 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import Banner from "./Banner/Banner";
 import BookCategories from "./BookCategory/BookCategories";
 import MobileApp from "./MobileApp";
+import HowWork from "./HowWork";
 
 
 const Home = () => {
@@ -18,6 +19,9 @@ const Home = () => {
             </div>
             <div className="mt-20">
                 <MobileApp></MobileApp>
+            </div>
+            <div>
+                <HowWork></HowWork>
             </div>
         </div>
     );
