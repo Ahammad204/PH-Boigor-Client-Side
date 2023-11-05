@@ -2,6 +2,11 @@
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+//Import Banner image
+import Banner1 from '../../../assets/Banner/Banner2.png'
+import Banner2 from '../../../assets/Banner/Banner3.png'
+import Banner3 from '../../../assets/Banner/Banner5.png'
+
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/effect-fade';
@@ -18,7 +23,7 @@ export default function Banner() {
     <>
       <Swiper
         spaceBetween={30}
-        effect={'fade'}
+        effect={''}
         navigation={true}
         pagination={{
           clickable: true,
@@ -27,17 +32,39 @@ export default function Banner() {
         className="mySwiper"
       >
         <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+          <div className='md:flex justify-between items-center'>
+            <div>
+                <h1 className='text-4xl  md:text-7xl font-bold ml-14 md:mt-10'>Buy <span className='text-[#E59285]'>Your</span> <br /> Favorite <span className='text-[#E59285]'>Book</span> <br /> From <span className='text-[#E59285]'>PHBoigor</span></h1>
+                <button className="btn btn-outline  ml-14 mt-10 hover:bg-[#E59285] hover:border-none">Buy Now</button>
+            </div>
+            <div className='md:w-96 md:h-96'>
+              <img  src={Banner1} alt="" />
+            </div>
+          </div>
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+          <div className='md:flex justify-between items-center'>
+            <div>
+            <h1 className='text-4xl  md:text-7xl font-bold ml-14 md:mt-10'><span className='text-[#E59285]'>BOIGHOR</span> <br /> The Best <span className='text-[#E59285]'>Online</span><br /> Book <span className='text-[#E59285]'>Shop</span></h1>
+                <button className="btn btn-outline  ml-14 mt-10 hover:bg-[#E59285] hover:border-none">Buy Now</button>
+            </div>
+            <div className='md:w-96 md:h-96'>
+              <img  src={Banner2} alt="" />
+            </div>
+          </div>
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+          <div className='md:flex justify-between items-center'>
+            <div>
+            <h1 className='text-4xl  md:text-7xl font-bold ml-14 md:mt-10'><span className='text-[#E59285]'>BOIGHOR</span> <br /> The Best <span className='text-[#E59285]'>Online</span><br /> Book <span className='text-[#E59285]'>Shop</span></h1>
+                <button className="btn btn-outline  ml-14 mt-10 hover:bg-[#E59285] hover:border-none">Buy Now</button>
+            </div>
+            <div className='md:w-96 md:h-96 mr-10'>
+              <img  src={Banner3} alt="" />
+            </div>
+          </div>
         </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-        </SwiperSlide>
+
       </Swiper>
     </>
   );
