@@ -10,7 +10,7 @@ const Books = () => {
     const [book, setBook] = useState([])
     const [isLoading, setIsLoading] = useState(true);
 
-    //Fetch car data by brand
+    //Fetch book data by category
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
@@ -35,10 +35,10 @@ const Books = () => {
                         <div>
                             <h1 className="text-center font-bold text-6xl mb-5 mt-5"> Available <span className="text-[#E59285]">  Books</span></h1>
                             <hr />
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10 ">
+                            <div  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10 ">
                                 {
 
-                                    book?.map(bookItem => <Book key={book._id} bookItem={bookItem}></Book>)
+                                    book?.map(bookItem => <Book key={bookItem._id} bookItem={bookItem}></Book>)
 
                                 }
                             </div>

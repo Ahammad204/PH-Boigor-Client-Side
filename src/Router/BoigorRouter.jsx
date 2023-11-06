@@ -7,10 +7,10 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import PrivateRoute from "./BoigorPrivate";
 import AddBook from '../Layouts/AdminLayouts/Add Book/AddBook';
-import AllBook from '../Layouts/AdminLayouts/All Book/AllBook';
 import AddCategory from "../Layouts/AdminLayouts/AddCategory/AddCategory";
 import Books from "../Pages/Books/Books";
 import DetailsPage from "../Pages/DetailsPage/DetailsPage";
+import AllBooks from "../Layouts/AdminLayouts/All Book/AllBooks";
 
 
 const router = createBrowserRouter([
@@ -52,7 +52,8 @@ const router = createBrowserRouter([
         {
 
           path:'/allBook',
-          element:<PrivateRoute><AllBook></AllBook></PrivateRoute>
+          element:<PrivateRoute><AllBooks></AllBooks></PrivateRoute>,
+          // loader:()=> fetch('http://localhost:5000/book')
 
         }
         ,

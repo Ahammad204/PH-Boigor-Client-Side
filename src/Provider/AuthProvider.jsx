@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import auth from "../Firebase/firebase.config";
+import axios from "axios";
 
 
 
@@ -10,15 +11,15 @@ const githubProvider = new GithubAuthProvider();
 
 
 // eslint-disable-next-line react/prop-types
-const AuthProvider = ({children}) => {
+const AuthProvider = ({ children }) => {
 
-    const [user,setUser] = useState({})
-    const [loading,setLoading] = useState(true);
+    const [user, setUser] = useState({})
+    const [loading, setLoading] = useState(true);
 
 
     const googleLogin = () => {
 
-        return signInWithPopup(auth,googleProvider)
+        return signInWithPopup(auth, googleProvider)
 
     }
 
@@ -26,16 +27,16 @@ const AuthProvider = ({children}) => {
 
     const githubLogin = () => {
 
-        return signInWithPopup(auth,githubProvider)
+        return signInWithPopup(auth, githubProvider)
 
     }
 
     // email sign up
 
-    const createUser = (email,password)=> {
-        
+    const createUser = (email, password) => {
+
         setLoading(true)
-        return createUserWithEmailAndPassword(auth,email,password)
+        return createUserWithEmailAndPassword(auth, email, password)
 
     }
 
@@ -44,7 +45,7 @@ const AuthProvider = ({children}) => {
     const login = (email, password) => {
 
         setLoading(true)
-        return signInWithEmailAndPassword (auth,email,password)
+        return signInWithEmailAndPassword(auth, email, password)
 
     }
 
@@ -52,12 +53,12 @@ const AuthProvider = ({children}) => {
 
     const handleUpdateProfile = (name, photo) => {
 
-       signOut(auth)
+        signOut(auth)
 
         return updateProfile(auth.currentUser, {
             displayName: name, photoURL: photo
         })
-      
+
     }
 
     console.log(auth)
@@ -71,23 +72,47 @@ const AuthProvider = ({children}) => {
 
     }
 
-   useEffect(()=>{
+    useEffect(() => {
 
-    onAuthStateChanged(auth, (user) => {
-       
-        setUser(user)
-        setLoading(false)
-    
-    
-    });
+        onAuthStateChanged(auth, (user) => {
+
+            const userEmail = user?.email || user?.email;
+            const loggedUser = { email: userEmail }
+
+            setUser(user)
+            setLoading(false)
+
+            //If user Exist then issue a token
+            if (user) {
+
+                axios.post('http://localhost:5000/jwt', loggedUser, { withCredentials: true })
+                    .then(res => {
+
+                        console.log(res.data)
+
+                    })
+
+            } /* else {
+
+                axios.post('http://localhost:5000/logout', loggedUser, { withCredentials: true })
+                    .then(res => {
+
+                        console.log(res.data)
+
+                    })
+
+            } */
 
 
-   },[])
+        });
 
-   console.log(user)
 
-  
-    
+    }, [user])
+
+    console.log(user)
+
+
+
 
     const authentication = {
 
