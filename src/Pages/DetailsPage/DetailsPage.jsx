@@ -13,6 +13,7 @@ const DetailsPage = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [todayDate, setTodayDate] = useState(new Date().toISOString().split("T")[0]);
     const [hasBorrowed, setHasBorrowed] = useState()
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const { _id, name, category, quantity, AuthorsName, short, photo } = bookDetails || {}
 
@@ -21,8 +22,7 @@ const DetailsPage = () => {
     const email = user.email;
     const names = user.displayName;
     const bookId = _id;
-
-
+    
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
@@ -45,7 +45,6 @@ const DetailsPage = () => {
     }, [id, email]);
 
 
-
     const handleAddBook = event => {
 
         event.preventDefault();
@@ -53,9 +52,15 @@ const DetailsPage = () => {
         if (hasBorrowed) {
             toast.error("You have already borrowed this book.");
             return;
+        } else if(isSubmitting){
+
+            toast.error("You have already borrowed this book.");
+            return;
+
         }
         else {
 
+            setIsSubmitting(true);
             const form = event.target;
 
             const names = form.names?.value;
@@ -95,8 +100,8 @@ const DetailsPage = () => {
 
                 })
 
-            // form.reset();
-
+             form.reset();
+            return;
         }
 
     }
