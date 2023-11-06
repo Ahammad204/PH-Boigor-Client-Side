@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 
 import Rating from "react-rating";
@@ -14,10 +15,10 @@ const Book = ({ bookItem }) => {
                 <figure><img className="w-full h-96" src={photo} alt={name} /></figure>
                 <div className="card-body">
                     <h2 className="card-title font-extrabold text-3xl">{name}</h2>
-                    <p className="text-lg font-medium ">{short}</p>
+                    {/* <p className="text-lg font-medium ">{short}</p> */}
                     <p className="text-base font-semibold mt-4">CATEGORY: {category}</p>
-                    <p className="text-base font-semibold ">Available Books: {quantity}</p>
-                    <p className="text-lg font-semibold text-[#ED1D26]">AUTHOR:{AuthorsName}</p>
+                    <p className="text-lg font-semibold ">Available Books: {quantity}</p>
+                    <p className="text-lg font-semibold text-[#E59285]">AUTHOR:{AuthorsName}</p>
                     <div className="rating">
 
                         <Rating
