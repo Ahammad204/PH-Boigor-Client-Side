@@ -12,6 +12,15 @@ const DetailsPage = () => {
     const [bookDetails, setBookDetails] = useState();
     const [isLoading, setIsLoading] = useState(true);
     const [todayDate, setTodayDate] = useState(new Date().toISOString().split("T")[0]);
+    const [hasBorrowed, setHasBorrowed] = useState()
+
+    const { _id, name, category, quantity, AuthorsName, short, photo } = bookDetails || {}
+
+    const { user } = useContext(AuthContext)
+
+    const email = user.email;
+    const names = user.displayName;
+    const bookId = _id;
 
 
     useEffect(() => {
@@ -21,69 +30,78 @@ const DetailsPage = () => {
             const data = await response.json();
             const filteredProducts = data.filter((item) => item._id === id);
             setBookDetails(filteredProducts[0]);
-            setIsLoading(false);
 
+
+            const borrowedResponse = await fetch(`http://localhost:5000/borrowed?email=${email}`);
+            const borrowedData = await borrowedResponse.json();
+            const hasBorrowed = borrowedData.some((borrowed) => borrowed.bookId === id);
+
+            setIsLoading(false);
+            setHasBorrowed(hasBorrowed);
 
         };
 
         fetchData();
-    }, [id]);
+    }, [id, email]);
 
-    const { _id, name, category, quantity, AuthorsName, short, photo } = bookDetails || {}
-
-    const { user } = useContext(AuthContext)
-
-    const email = user.email;
-    const names = user.displayName;
 
 
     const handleAddBook = event => {
 
         event.preventDefault();
-        const form = event.target;
 
-        const names = form.names?.value;
-        const email = form.email?.value;
-        const today = form.today_Date?.value;
-        const returnDate = form.return_date?.value;
+        if (hasBorrowed) {
+            toast.error("You have already borrowed this book.");
+            return;
+        }
+        else {
 
-        const newBorrowed = { names, email, today, returnDate, photo, name, category }
+            const form = event.target;
 
-        console.log(newBorrowed);
+            const names = form.names?.value;
+            const email = form.email?.value;
+            const today = form.today_Date?.value;
+            const returnDate = form.return_date?.value;
 
-        //send data to the server
-        fetch('http://localhost:5000/borrowed', {
+            const newBorrowed = { names, email, today, returnDate, photo, name, category, bookId }
 
-            method: 'POST',
-            headers: {
+            console.log(newBorrowed);
 
-                'content-type': 'application/json'
+            //send data to the server
+            fetch('http://localhost:5000/borrowed', {
 
-            },
-            body: JSON.stringify(newBorrowed)
+                method: 'POST',
+                headers: {
 
-        })
-            .then(res => res.json())
-            .then(data => {
+                    'content-type': 'application/json'
 
-                console.log(data);
-                if (data.insertedId) {
-
-                
-
-                  toast.success("Book Borrowed SuccessFully")
-
-                } else {
-
-                toast.error("Oops! Something Went Wrong")
-
-                }
+                },
+                body: JSON.stringify(newBorrowed)
 
             })
+                .then(res => res.json())
+                .then(data => {
 
-        // form.reset();
+                    console.log(data);
+                    if (data.insertedId) {
+
+                        toast.success("Book Borrowed SuccessFully")
+
+                    } else {
+
+                        toast.error("Oops! Something Went Wrong")
+
+                    }
+
+                })
+
+            // form.reset();
+
+        }
 
     }
+
+
 
     return (
         <div>
