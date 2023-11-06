@@ -1,7 +1,18 @@
+import { useContext } from "react";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../../Provider/AuthProvider";
+import { Navigate } from "react-router-dom";
 
 
 const AddCategory = () => {
+
+
+    const { user } = useContext(AuthContext)
+    if (user?.email !== import.meta.env.VITE_ADMIN_EMAIL) {
+
+        return <Navigate to={"/"}></Navigate>
+
+    }
 
 
     const handleAddCategory = event => {
