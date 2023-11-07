@@ -23,7 +23,7 @@ const DetailsPage = () => {
     const email = user.email;
     const names = user.displayName;
     const bookId = id;
-    
+
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
@@ -31,7 +31,7 @@ const DetailsPage = () => {
             const data = await response.json();
             const filteredProducts = data.filter((item) => item._id === id);
             setBookDetails(filteredProducts[0]);
-           
+            setAvailableBooks(quantity)
 
             const borrowedResponse = await fetch(`http://localhost:5000/borrowed?email=${email}`);
             const borrowedData = await borrowedResponse.json();
@@ -39,14 +39,14 @@ const DetailsPage = () => {
 
             setIsLoading(false);
             setHasBorrowed(hasBorrowed);
-            setAvailableBooks(quantity)
+
 
         };
 
         fetchData();
-    }, [id, email,quantity]);
+    }, [id, email, quantity]);
 
-    
+
 
 
     const handleAddBook = event => {
@@ -56,7 +56,7 @@ const DetailsPage = () => {
         if (hasBorrowed) {
             toast.error("You have already borrowed this book.");
             return;
-        } else if(isSubmitting){
+        } else if (isSubmitting) {
 
             toast.error("You have already borrowed this book.");
             return;
@@ -107,12 +107,12 @@ const DetailsPage = () => {
                             },
                             body: JSON.stringify({ quantity: updatedQuantity })
                         })
-                        .then(res => res.json())
-                        .then(data => {
+                            .then(res => res.json())
+                            .then(data => {
 
-                            console.log(data)
+                                console.log(data)
 
-                        })
+                            })
 
 
                     } else {
@@ -123,15 +123,15 @@ const DetailsPage = () => {
 
                 })
 
-            
 
-             form.reset();
+
+            form.reset();
             return;
         }
 
     }
 
-console.log(availableBooks)
+    console.log(availableBooks)
 
     return (
         <div>
@@ -149,7 +149,22 @@ console.log(availableBooks)
                         </div>
                         <div className="">
 
-                            <button className="btn mr-4 bg-transparent text-white hover:bg-[#E59285]  border-2 border-orange-300 hover:border-none font-outfit" onClick={() => document.getElementById('my_modal_1').showModal()}>Borrow</button>
+                            <button
+                                className={`btn mr-4 ${availableBooks === 0 ? 'bg-transparent cursor-not-allowed' : 'bg-transparent'
+                                    } text-white hover:bg-[#E59285] border-2 border-orange-300 hover:border-none font-outfit`}
+                                onClick={() => {
+                                    if (availableBooks > 0) {
+                                        // Only execute the onClick action if there are available books
+                                        document.getElementById('my_modal_1').showModal();
+                                    }
+                                }}
+                               
+                            >
+                                Borrow
+                            </button>
+
+
+
 
                             {/* Open the modal using document.getElementById('ID').showModal() method */}
                             <dialog id="my_modal_1" className="modal text-slate-500">
@@ -207,7 +222,7 @@ console.log(availableBooks)
 
 
 
-                                        <input className="btn btn-block text-white bg-[#E59285] hover:bg-[#E59285] " type="submit" value="Borrow Book" />
+                                        <input className="btn btn-block text-white bg-[#E59285] hover:bg-[#E59285] " type="submit" value="Borrow" />
                                     </form>
                                 </div>
                             </dialog>
