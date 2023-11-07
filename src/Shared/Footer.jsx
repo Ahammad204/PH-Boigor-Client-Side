@@ -2,8 +2,8 @@ import logo from '../assets/Logo/logo.png'
 
 const Footer = () => {
     return (
-        <div>
-            <footer className="footer p-10 bg-base-200 text-base-content">
+        <div className='flex flex-grow'>
+            <footer className="footer p-10  text-base-content">
                 <aside>
                     <img src={logo} alt="" />
                     <p>PH Boigor<br />Providing reliable Service since 2006</p>
