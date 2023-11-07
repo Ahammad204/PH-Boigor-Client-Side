@@ -11,6 +11,7 @@ import AddCategory from "../Layouts/AdminLayouts/AddCategory/AddCategory";
 import Books from "../Pages/Books/Books";
 import DetailsPage from "../Pages/DetailsPage/DetailsPage";
 import AllBooks from "../Layouts/AdminLayouts/All Book/AllBooks";
+import Update from "../Pages/UpdatePage/Update";
 
 
 const router = createBrowserRouter([
@@ -71,6 +72,11 @@ const router = createBrowserRouter([
 
           path:'/details/:id',
           element:<PrivateRoute><DetailsPage></DetailsPage></PrivateRoute>
+
+        },{
+
+          path:'/update/:id',
+          element:<PrivateRoute><Update></Update></PrivateRoute>
 
         }
 
