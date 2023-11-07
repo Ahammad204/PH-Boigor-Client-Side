@@ -11,6 +11,9 @@ const BorrowedBooks = () => {
     const [bookings, setBookings] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [carts, setCarts] = useState(bookings)
+    // const [bookId,setBookId]= useState()
+    const [increaseQuantity, setIncreaseQuantity] = useState();
+
 
     const url = `http://localhost:5000/borrowed?email=${user.email}`;
 
@@ -26,7 +29,9 @@ const BorrowedBooks = () => {
 
     })
 
-    const handleDelete = _id => {
+
+
+    const handleDelete = (_id, bookId) => {
 
         console.log(_id);
         Swal.fire({
@@ -52,12 +57,57 @@ const BorrowedBooks = () => {
                         console.log(data)
                         if (data.deletedCount > 0) {
                             Swal.fire(
-                                'Deleted!',
+                                'Returned!',
                                 'Your Book has been returned.',
                                 'success'
                             )
                             const remaining = carts.filter(bok => bok._id !== _id)
-                            setCarts(remaining)
+                            setCarts(remaining);
+
+                            //Update Book Quantity
+
+                            /*       const fetchData = async () => {
+                                      const response = await fetch(`http://localhost:5000/borrowed/${_id}`);
+                                      const data = await response.json();
+                                      const index = data.findIndex((item) => item.id === parseInt(_id));
+                                      setBookId(data[index].bookId);
+                              
+                                  };
+                                  fetchData(); */
+
+
+                            const fetchBooKIdData = async () => {
+                                const response = await fetch(`http://localhost:5000/book/${bookId}`);
+                                const data = await response.json();
+                                console.log(data.quantity);
+                                const updateQuantity = data.quantity;
+                                const updatedQuantity = updateQuantity + 1
+
+                                // setIncreaseQuantity(updatedQuantity) 
+                                // console.log(updateQuantity)
+
+
+                                fetch(`http://localhost:5000/book/${bookId}`, {
+                                    method: 'PUT',
+                                    headers: {
+                                        'content-type': 'application/json'
+                                    },
+                                    body: JSON.stringify({ quantity: updatedQuantity })
+                                })
+                                    .then(res => res.json())
+                                    .then(data => {
+
+                                        console.log(data)
+
+                                    })
+
+                            };
+                            fetchBooKIdData();
+
+                            // console.log(increaseQuantity)
+
+
+
 
                         }
 
@@ -66,6 +116,8 @@ const BorrowedBooks = () => {
         })
 
     }
+
+
 
     return (
         <div>
@@ -89,7 +141,7 @@ const BorrowedBooks = () => {
                                     <p className="text-base font-semibold ">Return Date: {prod.returnDate}</p>
 
                                     <div className="card-actions justify-end">
-                                        <button onClick={() => handleDelete(prod._id)} className="btn text-white border-none  bg-[#ED1D26] hover:bg-[#ED1D26] ">Return</button>
+                                        <button onClick={() => handleDelete(prod._id, prod.bookId)} className="btn text-white border-none  bg-[#ED1D26] hover:bg-[#ED1D26] ">Return</button>
                                     </div>
                                 </div>
                             </div>

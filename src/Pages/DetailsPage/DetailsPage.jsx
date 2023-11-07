@@ -49,7 +49,7 @@ const DetailsPage = () => {
 
 
 
-    const handleAddBook = event => {
+    const handleBorrowBook = event => {
 
         event.preventDefault();
 
@@ -71,8 +71,8 @@ const DetailsPage = () => {
             const email = form.email?.value;
             const today = form.today_Date?.value;
             const returnDate = form.return_date?.value;
-
-            const newBorrowed = { names, email, today, returnDate, photo, name, category, bookId }
+    
+            const newBorrowed = { names, email, today, returnDate, photo, name, category, bookId,quantity }
 
             console.log(newBorrowed);
 
@@ -173,7 +173,7 @@ const DetailsPage = () => {
                                         {/* if there is a button in form, it will close the modal */}
                                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                                     </form>
-                                    <form onSubmit={handleAddBook} className="mt-4">
+                                    <form onSubmit={handleBorrowBook} className="mt-4">
 
                                         {/* Name and Email row */}
                                         <div className="md:flex mb-8">
