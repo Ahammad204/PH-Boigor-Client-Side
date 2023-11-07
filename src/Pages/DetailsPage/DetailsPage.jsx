@@ -144,17 +144,17 @@ const DetailsPage = () => {
                         <div className="grid md:grid-cols-3 grid-cols-1 gap-4 mb-4">
                             <button className="btn bg-transparent text-white hover:bg-[#E59285]  border-2 border-orange-300 hover:border-none font-outfit">Category {category}</button>
                             <button className="btn h-auto bg-transparent text-white hover:bg-[#E59285]  border-2 border-orange-300 hover:border-none font-outfit"> {AuthorsName}</button>
-                            <button className="btn bg-transparent text-white hover:bg-[#E59285]  border-2 border-orange-300 hover:border-none font-outfit">Available Books: {quantity}</button>
+                            <button className="btn bg-transparent text-white hover:bg-[#E59285]  border-2 border-orange-300 hover:border-none font-outfit"> {quantity === 0 ? 'Out of Stock' : `Available Books: ${quantity || []}`}</button>
 
                         </div>
                         <div className="">
 
                             <button
-                                className={`btn mr-4 ${availableBooks === 0 ? 'bg-transparent cursor-not-allowed' : 'bg-transparent'
+                                className={`btn mr-4 ${availableBooks === 0 ? 'bg-gray-600 hover:bg-gray-600 border-none cursor-not-allowed  opacity-75 disabled:' : 'bg-transparent'
                                     } text-white hover:bg-[#E59285] border-2 border-orange-300 hover:border-none font-outfit`}
                                 onClick={() => {
                                     if (availableBooks > 0) {
-                                        // Only execute the onClick action if there are available books
+
                                         document.getElementById('my_modal_1').showModal();
                                     }
                                 }}
