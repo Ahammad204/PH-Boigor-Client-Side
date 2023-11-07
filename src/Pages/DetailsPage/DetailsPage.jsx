@@ -14,6 +14,7 @@ const DetailsPage = () => {
     const [todayDate, setTodayDate] = useState(new Date().toISOString().split("T")[0]);
     const [hasBorrowed, setHasBorrowed] = useState()
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [availableBooks, setAvailableBooks] = useState();
 
     const { _id, name, category, quantity, AuthorsName, short, photo } = bookDetails || {}
 
@@ -21,7 +22,7 @@ const DetailsPage = () => {
 
     const email = user.email;
     const names = user.displayName;
-    const bookId = _id;
+    const bookId = id;
     
     useEffect(() => {
         const fetchData = async () => {
@@ -30,7 +31,7 @@ const DetailsPage = () => {
             const data = await response.json();
             const filteredProducts = data.filter((item) => item._id === id);
             setBookDetails(filteredProducts[0]);
-
+           
 
             const borrowedResponse = await fetch(`http://localhost:5000/borrowed?email=${email}`);
             const borrowedData = await borrowedResponse.json();
@@ -38,11 +39,14 @@ const DetailsPage = () => {
 
             setIsLoading(false);
             setHasBorrowed(hasBorrowed);
+            setAvailableBooks(quantity)
 
         };
 
         fetchData();
-    }, [id, email]);
+    }, [id, email,quantity]);
+
+    
 
 
     const handleAddBook = event => {
@@ -90,7 +94,26 @@ const DetailsPage = () => {
                     console.log(data);
                     if (data.insertedId) {
 
-                        toast.success("Book Borrowed SuccessFully")
+                        const updatedQuantity = availableBooks - 1;
+
+                        setAvailableBooks(updatedQuantity)
+
+                        toast.success("Book Borrowed SuccessFully");
+
+                        fetch(`http://localhost:5000/book/${id}`, {
+                            method: 'PUT',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify({ quantity: updatedQuantity })
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+
+                            console.log(data)
+
+                        })
+
 
                     } else {
 
@@ -100,13 +123,15 @@ const DetailsPage = () => {
 
                 })
 
+            
+
              form.reset();
             return;
         }
 
     }
 
-
+console.log(availableBooks)
 
     return (
         <div>
