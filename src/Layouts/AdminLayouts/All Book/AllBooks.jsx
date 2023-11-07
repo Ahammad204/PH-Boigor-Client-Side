@@ -1,54 +1,58 @@
-/* eslint-disable no-unused-vars */
+
+
+
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { Link, Navigate } from "react-router-dom";
 import Rating from "react-rating";
 
-
-
-
 const AllBooks = () => {
-
-
-    const { user } = useContext(AuthContext)
+    const { user } = useContext(AuthContext);
     const [AllsBooks, setBookings] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [showAvailableBooks, setShowAvailableBooks] = useState(false);
 
     const url = `http://localhost:5000/book`;
 
     useEffect(() => {
-
         fetch(url)
-            .then(res => res.json())
-            .then(data => {
-                setBookings(data)
-                // console.log(data)
-
-            })
-
-    })
-
+            .then((res) => res.json())
+            .then((data) => {
+                setBookings(data);
+                setIsLoading(false);
+            });
+    }, []);
 
     if (user?.email !== import.meta.env.VITE_ADMIN_EMAIL) {
-
-        return <Navigate to={"/"}></Navigate>
-
+        return <Navigate to={"/"}></Navigate>;
     }
 
+
+    const filteredBooks = showAvailableBooks
+        ? AllsBooks.filter((book) => book.quantity > 0)
+        : AllsBooks;
 
     return (
         <div>
 
-            {AllsBooks.length > 0 ? (
+            <div className="text-center flex justify-center items-center ">
+                <button
+                    onClick={() => setShowAvailableBooks(!showAvailableBooks)}
+                    className="btn  bg-[#E59285] hover:bg-[#E59285] text-white"
+                >
+                    {showAvailableBooks ? "Show All Books" : "Show Available Books"}
+                </button>
+            </div>
 
-
-
+            {filteredBooks.length > 0 ? (
                 <div>
-                    <h1 className="text-center font-bold text-6xl mb-5 mt-5"> PHBoigor Library  <span className="text-[#E59285]"> Books </span></h1>
+                    <h1 className="text-center font-bold text-6xl mb-5 mt-5">
+                        PHBoigor Library <span className="text-[#E59285]"> Books </span>
+                    </h1>
                     <hr />
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10">
-                        {AllsBooks?.map(prod => (
+                        {filteredBooks?.map((prod) => (
                             <div className="card bg-base-100 shadow-xl " key={prod._id}>
                                 <figure><img className="w-full h-96" src={prod.photo} alt={prod.name} /></figure>
                                 <div className="card-body">
@@ -57,7 +61,6 @@ const AllBooks = () => {
                                     <p className={`text-lg font-semibold ${prod.quantity === 0 ? 'text-red-600' : ''}`}>
                                         {prod.quantity === 0 ? 'Out of Stock' : `Available Books: ${prod.quantity}`}
                                     </p>
-
 
                                     <p className="text-lg font-semibold text-[#E59285]">AUTHOR:{prod.AuthorsName}</p>
                                     <div className="rating">
@@ -99,18 +102,16 @@ const AllBooks = () => {
                                     </div>
 
                                     <div className="card-actions justify-end">
-                                        <Link to={`/update/${prod._id}`}>  <button className="btn bg-[#E59285] hover:bg-[#E59285] text-white">Update</button></Link>
-
+                                        <Link to={`/update/${prod._id}`}>
+                                            <button className="btn bg-[#E59285] hover-bg-[#E59285] text-white">Update</button>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
                         ))}
                     </div>
                 </div>
-
-
             ) : (
-
                 <div>
                     {isLoading ? (
                         <div className="flex justify-center items-center mt-20">
@@ -124,27 +125,22 @@ const AllBooks = () => {
                             </div>
                         </div>
                     ) : (
-
                         <div className="flex justify-center items-center mt-20">
-                            <div className="hero w-2/3 h-2/3" >
+                            <div className="hero w-2/3 h-2/3">
                                 <div className=""></div>
-                                <div className="hero-content text-center ">
+                                <div className="hero-content text-center">
                                     <div className="max-w-md">
                                         <h1 className="mb-5 text-5xl font-bold">Hey Book Lover</h1>
-                                        <p className="mb-5 text-xl ">There is noting to show <br /> Add Some Book For Explore</p>
-
+                                        <p className="mb-5 text-xl ">
+                                            There is nothing to show <br /> Add Some Book For Explore
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     )}
                 </div>
-
-            )
-
-
-
-            }
+            )}
         </div>
     );
 };
