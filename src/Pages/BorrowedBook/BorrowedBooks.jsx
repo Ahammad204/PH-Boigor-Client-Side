@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from './../../Provider/AuthProvider';
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import axios from "axios";
 
 
 
@@ -12,25 +13,27 @@ const BorrowedBooks = () => {
     const [bookings, setBookings] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [carts, setCarts] = useState(bookings)
-
-    const [increaseQuantity, setIncreaseQuantity] = useState();
     const axiosSecure = useAxiosSecure()
+    const [increaseQuantity, setIncreaseQuantity] = useState();
+
 
     const url = `/borrowed?email=${user.email}`;
 
     useEffect(() => {
 
-      /*   fetch(url, { credentials: 'include' })
-            .then(res => res.json())
-            .then(data => {
-                setBookings(data)
-                // console.log(data)
+        /*  fetch(url, { credentials: 'include' })
+             .then(res => res.json())
+             .then(data => {
+                 setBookings(data)
+                 // console.log(data)
+ 
+             })  */
 
-            }) */
-            axiosSecure.get(url)
+        axiosSecure.get(url)
             .then(res => setBookings(res.data))
 
-    })
+
+    }, [axiosSecure, url])
 
 
 
@@ -49,7 +52,7 @@ const BorrowedBooks = () => {
             if (result.isConfirmed) {
 
 
-                fetch(`http://localhost:5000/borrowed/${_id}`, {
+                fetch(`https://phb-oigor-server-side.vercel.app/borrowed/${_id}`, {
 
                     method: 'DELETE'
 
@@ -68,7 +71,7 @@ const BorrowedBooks = () => {
                             setCarts(remaining);
 
                             const fetchBooKIdData = async () => {
-                                const response = await fetch(`http://localhost:5000/book/${bookId}`);
+                                const response = await fetch(`https://phb-oigor-server-side.vercel.app/book/${bookId}`);
                                 const data = await response.json();
                                 console.log(data.quantity);
                                 const updateQuantity = data.quantity;
@@ -78,7 +81,7 @@ const BorrowedBooks = () => {
                                 // console.log(updateQuantity)
 
 
-                                fetch(`http://localhost:5000/book/${bookId}`, {
+                                fetch(`https://phb-oigor-server-side.vercel.app/book/${bookId}`, {
                                     method: 'PUT',
                                     headers: {
                                         'content-type': 'application/json'

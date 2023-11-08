@@ -18,7 +18,7 @@ const Update = () => {
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
-            const response = await fetch(`http://localhost:5000/book/`);
+            const response = await fetch(`https://phb-oigor-server-side.vercel.app/book/`);
             const data = await response.json();
             const filteredProducts = data.filter((item) => item._id === id);
             setUpdated(filteredProducts[0]);
@@ -59,7 +59,7 @@ const Update = () => {
         console.log(newBook);
 
         //send data to the server
-        fetch(`http://localhost:5000/book/${id}`, {
+        fetch(`https://phb-oigor-server-side.vercel.app/book/${id}`, {
 
             method: 'PUT',
             headers: {

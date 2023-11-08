@@ -14,7 +14,7 @@ const AllBooks = () => {
     const [showAvailableBooks, setShowAvailableBooks] = useState(false);
    
 
-    const url = `http://localhost:5000/book`;
+    const url = `https://phb-oigor-server-side.vercel.app/book`;
 
     useEffect(() => {
         fetch(url)
@@ -52,7 +52,7 @@ const AllBooks = () => {
             if (result.isConfirmed) {
 
 
-                fetch(`http://localhost:5000/book/${_id}`, {
+                fetch(`https://phb-oigor-server-side.vercel.app/book/${_id}`, {
 
                     method: 'DELETE'
 
@@ -71,7 +71,7 @@ const AllBooks = () => {
                             setCarts(remaining);
 
                             const fetchBooKIdData = async () => {
-                                const response = await fetch(`http://localhost:5000/book/${_id}`);
+                                const response = await fetch(`https://phb-oigor-server-side.vercel.app/${_id}`);
                                 const data = await response.json();
                                 console.log(data);
                         

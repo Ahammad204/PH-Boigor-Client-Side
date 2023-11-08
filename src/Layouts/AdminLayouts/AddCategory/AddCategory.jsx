@@ -28,7 +28,7 @@ const AddCategory = () => {
         console.log(newCategory);
 
         //send data to the server
-        fetch('http://localhost:5000/category', {
+        fetch('https://phb-oigor-server-side.vercel.app/category', {
 
             method: 'POST',
             headers: {

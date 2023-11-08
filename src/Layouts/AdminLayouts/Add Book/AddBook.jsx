@@ -33,7 +33,7 @@ const AddBook = () => {
         console.log(newBook);
 
         //send data to the server
-        fetch('http://localhost:5000/book', {
+        fetch('https://phb-oigor-server-side.vercel.app/book', {
 
             method: 'POST',
             headers: {

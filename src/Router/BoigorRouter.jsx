@@ -26,7 +26,7 @@ const router = createBrowserRouter([
 
             path:'/',
             element: <Home></Home>,
-            loader:()=> fetch('http://localhost:5000/category')
+            loader:()=> fetch('https://phb-oigor-server-side.vercel.app/category')
 
         },{
 
@@ -55,7 +55,6 @@ const router = createBrowserRouter([
 
           path:'/allBook',
           element:<PrivateRoute><AllBooks></AllBooks></PrivateRoute>,
-          // loader:()=> fetch('http://localhost:5000/book')
 
         }
         ,

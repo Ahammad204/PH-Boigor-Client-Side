@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const axiosSecure = axios.create({
 
-    baseURL: 'http://localhost:5000',
+    baseURL: 'https://phb-oigor-server-side.vercel.app',
     withCredentials: true
 
 })
@@ -41,7 +41,7 @@ const useAxiosSecure = () => {
         }
         )
 
-    }, [])
+    }, [logout, navigate])
 
     return axiosSecure
 
