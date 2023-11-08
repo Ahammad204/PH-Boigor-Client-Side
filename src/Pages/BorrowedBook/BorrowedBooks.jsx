@@ -2,6 +2,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from './../../Provider/AuthProvider';
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 
 
@@ -11,21 +12,23 @@ const BorrowedBooks = () => {
     const [bookings, setBookings] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [carts, setCarts] = useState(bookings)
- 
+
     const [increaseQuantity, setIncreaseQuantity] = useState();
+    const axiosSecure = useAxiosSecure()
 
-
-    const url = `http://localhost:5000/borrowed?email=${user.email}`;
+    const url = `/borrowed?email=${user.email}`;
 
     useEffect(() => {
 
-        fetch(url)
+      /*   fetch(url, { credentials: 'include' })
             .then(res => res.json())
             .then(data => {
                 setBookings(data)
                 // console.log(data)
 
-            })
+            }) */
+            axiosSecure.get(url)
+            .then(res => setBookings(res.data))
 
     })
 

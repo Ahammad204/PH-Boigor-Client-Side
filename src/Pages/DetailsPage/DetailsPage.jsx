@@ -150,7 +150,7 @@ const DetailsPage = () => {
                         <div className="">
 
                             <button
-                                className={`btn mr-4 ${availableBooks === 0 ? 'bg-gray-600 hover:bg-gray-600 border-none cursor-not-allowed  opacity-75 disabled:' : 'bg-transparent'
+                                className={`btn mr-4 ${quantity === 0 ? 'bg-gray-600 hover:bg-gray-600 border-none cursor-not-allowed  opacity-75 disabled:' : 'bg-transparent'
                                     } text-white hover:bg-[#E59285] border-2 border-orange-300 hover:border-none font-outfit`}
                                 onClick={() => {
                                     if (availableBooks > 0) {
