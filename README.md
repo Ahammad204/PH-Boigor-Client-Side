@@ -1,3 +1,22 @@
+# Features
+ - liberian can add book and information by select book category.
+ - user can login and access to private route
+ - liberian can update any product details
+ - user can see any product details
+ - user can borrow product.
+ - user can see what they borrow in borrow section.
+
+# Admin 
+ For login as liberian :
+
+ - email: admin@gmail.com
+ - password: 123456A#
+
+ # live Link 
+
+ Live Link: https://phboigor.web.app/   
+
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
