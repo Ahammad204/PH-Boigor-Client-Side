@@ -5,12 +5,14 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { Link, Navigate } from "react-router-dom";
 import Rating from "react-rating";
+import Swal from "sweetalert2";
 
 const AllBooks = () => {
     const { user } = useContext(AuthContext);
-    const [AllsBooks, setBookings] = useState([]);
+    const [AllsBooks, setAllsBook] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [showAvailableBooks, setShowAvailableBooks] = useState(false);
+   
 
     const url = `http://localhost:5000/book`;
 
@@ -18,10 +20,10 @@ const AllBooks = () => {
         fetch(url)
             .then((res) => res.json())
             .then((data) => {
-                setBookings(data);
+                setAllsBook(data);
                 setIsLoading(false);
             });
-    }, []);
+    }, [url]);
 
     if (user?.email !== import.meta.env.VITE_ADMIN_EMAIL) {
         return <Navigate to={"/"}></Navigate>;
@@ -29,8 +31,62 @@ const AllBooks = () => {
 
 
     const filteredBooks = showAvailableBooks
-        ? AllsBooks.filter((book) => book.quantity > 0)
+        ? AllsBooks.filter((book) => book.quantity > 1)
         : AllsBooks;
+
+        
+
+
+    const handleDelete = (_id) => {
+
+        console.log(_id);
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#E59285',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Return it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+
+                fetch(`http://localhost:5000/book/${_id}`, {
+
+                    method: 'DELETE'
+
+                })
+                    .then(res => res.json())
+                    .then(data => {
+
+                        console.log(data)
+                        if (data.deletedCount > 0) {
+                            Swal.fire(
+                                'Returned!',
+                                'Your Book has been returned.',
+                                'success'
+                            )
+                            const remaining = carts.filter(bok => bok._id !== _id)
+                            setCarts(remaining);
+
+                            const fetchBooKIdData = async () => {
+                                const response = await fetch(`http://localhost:5000/book/${_id}`);
+                                const data = await response.json();
+                                console.log(data);
+                        
+                            };
+                            fetchBooKIdData();
+
+                        }
+                    })
+            }
+        })
+
+    }
+
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [carts, setCarts] = useState(filteredBooks)
 
     return (
         <div>
@@ -58,8 +114,8 @@ const AllBooks = () => {
                                 <div className="card-body">
                                     <h2 className="card-title font-extrabold text-3xl">{prod.name}</h2>
                                     <p className="text-base font-semibold mt-4">CATEGORY: {prod.category}</p>
-                                    <p className={`text-lg font-semibold ${prod.quantity === 0 ? 'text-red-600' : ''}`}>
-                                        {prod.quantity === 0 ? 'Out of Stock' : `Available Books: ${prod.quantity}`}
+                                    <p className={`text-lg font-semibold ${prod.quantity < 1 ? 'text-red-600' : ''}`}>
+                                        {prod.quantity < 1 ? 'Out of Stock' : `Available Books: ${prod.quantity}`}
                                     </p>
 
                                     <p className="text-lg font-semibold text-[#E59285]">AUTHOR:{prod.AuthorsName}</p>
@@ -102,8 +158,9 @@ const AllBooks = () => {
                                     </div>
 
                                     <div className="card-actions justify-end">
+                                        <button onClick={() => handleDelete(prod._id)} className="btn text-white border-none  bg-[#E59285] hover:bg-[#E59285] ">Delete</button>
                                         <Link to={`/update/${prod._id}`}>
-                                            <button className="btn bg-[#E59285] hover-bg-[#E59285] text-white">Update</button>
+                                            <button className="btn bg-[#E59285] hover:bg-[#E59285] text-white">Update</button>
                                         </Link>
                                     </div>
                                 </div>

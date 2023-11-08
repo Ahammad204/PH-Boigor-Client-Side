@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Provider/AuthProvider";
 import toast from "react-hot-toast";
@@ -144,7 +144,7 @@ const DetailsPage = () => {
                         <div className="grid md:grid-cols-3 grid-cols-1 gap-4 mb-4">
                             <button className="btn bg-transparent text-white hover:bg-[#E59285]  border-2 border-orange-300 hover:border-none font-outfit">Category {category}</button>
                             <button className="btn h-auto bg-transparent text-white hover:bg-[#E59285]  border-2 border-orange-300 hover:border-none font-outfit"> {AuthorsName}</button>
-                            <button className="btn bg-transparent text-white hover:bg-[#E59285]  border-2 border-orange-300 hover:border-none font-outfit"> {quantity === 0 ? 'Out of Stock' : `Available Books: ${quantity || []}`}</button>
+                            <button className="btn bg-transparent text-white hover:bg-[#E59285]  border-2 border-orange-300 hover:border-none font-outfit"> {quantity < 1 ? 'Out of Stock' : `Available Books: ${quantity || []}`}</button>
 
                         </div>
                         <div className="">
@@ -228,8 +228,9 @@ const DetailsPage = () => {
                             </dialog>
 
 
-
-                            <button className="btn bg-transparent text-white hover:bg-[#E59285]  border-2 border-orange-300 hover:border-none font-outfit">Read</button>
+                                <Link to={`/pdf/${_id}`}>
+                            <button className="btn bg-transparent text-white hover:bg-[#E59285]  border-2 border-orange-300 hover:border-none font-outfit">Read</button></Link>
+                            
 
                         </div>
 

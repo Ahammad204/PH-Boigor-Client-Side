@@ -7,7 +7,7 @@ import { Toaster } from "react-hot-toast";
 const MainLayouts = () => {
     return (
         <div>
-            <div className="max-w-7xl mx-auto">
+            <div className="max-w-7xl  mx-auto">
                 <div>
                     <Navbar></Navbar>
                 </div>

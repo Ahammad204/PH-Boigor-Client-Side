@@ -12,6 +12,7 @@ import Books from "../Pages/Books/Books";
 import DetailsPage from "../Pages/DetailsPage/DetailsPage";
 import AllBooks from "../Layouts/AdminLayouts/All Book/AllBooks";
 import Update from "../Pages/UpdatePage/Update";
+import PdfFile from "../Pages/ReadBook/PdfFile";
 
 
 const router = createBrowserRouter([
@@ -77,6 +78,11 @@ const router = createBrowserRouter([
 
           path:'/update/:id',
           element:<PrivateRoute><Update></Update></PrivateRoute>
+
+        },{
+
+          path:'/pdf/:id',
+          element:<PrivateRoute><PdfFile></PdfFile></PrivateRoute>
 
         }
 

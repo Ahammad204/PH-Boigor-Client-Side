@@ -25,8 +25,10 @@ const AddBook = () => {
         const short = form.short?.value;
         const rating2 = parseInt(form.rating2?.value, 10);
         const photo = form.photo?.value;
+        const bookContent = form.bookContent?.value;
 
-        const newBook = { name, category, quantity, AuthorsName, short, rating2, photo }
+
+        const newBook = { name, category, quantity, AuthorsName, short, rating2, photo,bookContent }
 
         console.log(newBook);
 
@@ -159,6 +161,17 @@ const AddBook = () => {
                             <label className="input-group">
 
                                 <input type="text" required name="photo" placeholder="Photo Url" className="input input-bordered w-full" />
+                            </label>
+                        </div>
+
+                    </div>
+                    <div className="mb-8">
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text">Book Content</span>
+                            </label>
+                            <label className="input-group">
+                            <textarea type="text"  required name="bookContent" placeholder="Enter Some Book Content" className="textarea textarea-bordered textarea-lg w-full " ></textarea>
                             </label>
                         </div>
 

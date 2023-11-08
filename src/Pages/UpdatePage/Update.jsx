@@ -52,8 +52,9 @@ const Update = () => {
         const short = form.short?.value;
         const rating2 = parseInt(form.rating2?.value, 10);
         const photo = form.photo?.value;
+        const bookContent = form.bookContent?.value;
 
-        const newBook = { name, category, quantity, AuthorsName, short, rating2, photo }
+        const newBook = { name, category, quantity, AuthorsName, short, rating2, photo, bookContent }
 
         console.log(newBook);
 
@@ -181,6 +182,18 @@ const Update = () => {
                         </div>
 
                     </div>
+                    <div className="mb-8">
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text">Book Content</span>
+                            </label>
+                            <label className="input-group">
+                            <textarea type="text" defaultValue={Updated?.bookContent} required name="bookContent" placeholder="Enter Some Book Content" className="textarea textarea-bordered textarea-lg w-full " ></textarea>
+                            </label>
+                        </div>
+
+                    </div>
+                  
 
                     <input className="btn btn-block text-white bg-[#E59285] hover:bg-[#E59285] " type="submit" value="Add Book" />
                 </form>

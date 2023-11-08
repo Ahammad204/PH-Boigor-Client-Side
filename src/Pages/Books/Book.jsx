@@ -16,8 +16,8 @@ const Book = ({ bookItem }) => {
             <div className="card-body">
                 <h2 className="card-title font-extrabold text-3xl">{name}</h2>
                 <p className="text-base font-semibold mt-4">CATEGORY: {category}</p>
-                <p className={`text-lg font-semibold ${quantity === 0 || quantity === null ? 'text-red-600' : ''}`}>
-                    {quantity === 0 || quantity === null ? 'Out of Stock' : `Available Books: ${quantity}`}
+                <p className={`text-lg font-semibold ${quantity < 1 || quantity < null ? 'text-red-600' : ''}`}>
+                    {quantity < 1 || quantity < null ? 'Out of Stock' : `Available Books: ${quantity}`}
                 </p>
 
 

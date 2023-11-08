@@ -11,7 +11,7 @@ const BorrowedBooks = () => {
     const [bookings, setBookings] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [carts, setCarts] = useState(bookings)
-    // const [bookId,setBookId]= useState()
+ 
     const [increaseQuantity, setIncreaseQuantity] = useState();
 
 
@@ -39,7 +39,7 @@ const BorrowedBooks = () => {
             text: "You won't be able to revert this!",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
+            confirmButtonColor: '#E59285',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, Return it!'
         }).then((result) => {
@@ -63,18 +63,6 @@ const BorrowedBooks = () => {
                             )
                             const remaining = carts.filter(bok => bok._id !== _id)
                             setCarts(remaining);
-
-                            //Update Book Quantity
-
-                            /*       const fetchData = async () => {
-                                      const response = await fetch(`http://localhost:5000/borrowed/${_id}`);
-                                      const data = await response.json();
-                                      const index = data.findIndex((item) => item.id === parseInt(_id));
-                                      setBookId(data[index].bookId);
-                              
-                                  };
-                                  fetchData(); */
-
 
                             const fetchBooKIdData = async () => {
                                 const response = await fetch(`http://localhost:5000/book/${bookId}`);
@@ -141,7 +129,7 @@ const BorrowedBooks = () => {
                                     <p className="text-base font-semibold ">Return Date: {prod.returnDate}</p>
 
                                     <div className="card-actions justify-end">
-                                        <button onClick={() => handleDelete(prod._id, prod.bookId)} className="btn text-white border-none  bg-[#ED1D26] hover:bg-[#ED1D26] ">Return</button>
+                                        <button onClick={() => handleDelete(prod._id, prod.bookId)} className="btn text-white border-none  bg-[#E59285] hover:bg-[#E59285] ">Return</button>
                                     </div>
                                 </div>
                             </div>
