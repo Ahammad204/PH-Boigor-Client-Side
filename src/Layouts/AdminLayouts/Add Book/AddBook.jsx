@@ -35,6 +35,7 @@ const AddBook = () => {
         //send data to the server
         fetch('https://phb-oigor-server-side.vercel.app/book', {
 
+            credentials:'include',
             method: 'POST',
             headers: {
 

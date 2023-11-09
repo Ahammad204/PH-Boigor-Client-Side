@@ -14,10 +14,10 @@ const AllBooks = () => {
     const [showAvailableBooks, setShowAvailableBooks] = useState(false);
    
 
-    const url = `https://phb-oigor-server-side.vercel.app/book`;
+    const url = `https://phb-oigor-server-side.vercel.app/book` ;
 
     useEffect(() => {
-        fetch(url)
+        fetch(url )
             .then((res) => res.json())
             .then((data) => {
                 setAllsBook(data);
@@ -54,6 +54,7 @@ const AllBooks = () => {
 
                 fetch(`https://phb-oigor-server-side.vercel.app/book/${_id}`, {
 
+                    credentials:'include',
                     method: 'DELETE'
 
                 })

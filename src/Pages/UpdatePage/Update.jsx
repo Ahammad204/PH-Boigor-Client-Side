@@ -60,8 +60,8 @@ const Update = () => {
 
         //send data to the server
         fetch(`https://phb-oigor-server-side.vercel.app/book/${id}`, {
-
-            method: 'PUT',
+            credentials:'include',
+            method:  'PUT',
             headers: {
 
                 'content-type': 'application/json'
