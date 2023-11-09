@@ -183,7 +183,7 @@ const DetailsPage = () => {
                                                 </label>
                                                 <label className="input-group">
 
-                                                    <input type="text" defaultValue={names} required name="names" placeholder="Enter Your Full Name" className="input input-bordered w-full" />
+                                                    <input type="text" disabled defaultValue={names} required name="names" placeholder="Enter Your Full Name" className="input input-bordered w-full" />
                                                 </label>
                                             </div>
                                             <div className="form-control md:w-1/2 ml-4">
@@ -192,7 +192,7 @@ const DetailsPage = () => {
                                                 </label>
                                                 <label className="input-group">
 
-                                                    <input type="email" defaultValue={email} required name="email" placeholder="Enter Your Email" className="input input-bordered w-full" />
+                                                    <input type="email" disabled defaultValue={email} required name="email" placeholder="Enter Your Email" className="input input-bordered w-full" />
                                                 </label>
                                             </div>
                                         </div>
