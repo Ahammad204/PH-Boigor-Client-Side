@@ -21,19 +21,19 @@ const BorrowedBooks = () => {
 
     useEffect(() => {
 
-        /*  fetch(url, { credentials: 'include' })
-             .then(res => res.json())
-             .then(data => {
-                 setBookings(data)
-                 // console.log(data)
- 
-             })  */
-
-        axiosSecure.get(url)
-            .then(res => setBookings(res.data))
+       /*  fetch(url, { credentials: 'include' })
+            .then(res => res.json())
+            .then(data => {
+                setBookings(data)
 
 
-    }, [axiosSecure, url])
+            }) */
+
+         axiosSecure.get(url)
+            .then(res => setBookings(res.data)) 
+
+
+    })
 
 
 

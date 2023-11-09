@@ -1,7 +1,8 @@
 import toast from "react-hot-toast";
-import { Link,useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../Register/SocialLogin/SocialLogin";
 import useAuth from "../../Hooks/useAuth";
+import axios from "axios";
 
 
 
@@ -40,9 +41,22 @@ const Login = () => {
 
                 console.log(result.user);
 
-                navigate(location?.state ? location.state : '/');
+                const user = { email }
 
-                
+                //Get Access Token 
+
+                axios.post('https://phb-oigor-server-side.vercel.app/jwt', user, { withCredentials: true })
+                    .then(res => {
+
+                        console.log(res.data)
+                        if(res.data.success) {
+
+                            navigate(location?.state ? location.state : '/');
+
+                        }
+                    })
+                    
+
 
 
             })
@@ -75,7 +89,7 @@ const Login = () => {
                     <div className="form-control mt-6">
                         <button className="btn btn-primary text-white border-none bg-[#E59285]  hover:bg-[#E59285] ">Login</button>
                     </div>
-                     <SocialLogin></SocialLogin> 
+                    <SocialLogin></SocialLogin>
                 </form>
                 <p className="text-center mt-4">Do not have an account? <Link className="text-[#E59285]  font-bold" to="/register">Register</Link></p>
 
