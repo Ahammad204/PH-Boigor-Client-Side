@@ -31,7 +31,7 @@ const AllBooks = () => {
 
 
     const filteredBooks = showAvailableBooks
-        ? AllsBooks.filter((book) => book.quantity > 1)
+        ? AllsBooks.filter((book) => book.quantity > 0)
         : AllsBooks;
 
         

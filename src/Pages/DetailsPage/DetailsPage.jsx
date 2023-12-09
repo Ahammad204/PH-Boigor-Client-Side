@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 
 const DetailsPage = () => {
 
-    const { id } = useParams()
+     const { id } = useParams()
     const [bookDetails, setBookDetails] = useState();
     const [isLoading, setIsLoading] = useState(true);
     const [todayDate, setTodayDate] = useState(new Date().toISOString().split("T")[0]);
@@ -22,7 +22,7 @@ const DetailsPage = () => {
 
     const email = user.email;
     const names = user.displayName;
-    const bookId = id;
+    const bookId = _id;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -35,7 +35,7 @@ const DetailsPage = () => {
 
             const borrowedResponse = await fetch(`https://phb-oigor-server-side.vercel.app/borrowed?email=${email}`);
             const borrowedData = await borrowedResponse.json();
-            const hasBorrowed = borrowedData.some((borrowed) => borrowed.bookId === id);
+            const hasBorrowed = borrowedData.find((borrowed) => borrowed.bookId === bookId);
 
             setIsLoading(false);
             setHasBorrowed(hasBorrowed);
@@ -44,21 +44,25 @@ const DetailsPage = () => {
         };
 
         fetchData();
-    }, [id, email, quantity]);
+    }, [email, quantity, bookId, id]);
 
 
 
 
     const handleBorrowBook = event => {
+        
 
         event.preventDefault();
+
+        console.log(hasBorrowed)
 
         if (hasBorrowed) {
             toast.error("You have already borrowed this book.");
             return;
         } else if (isSubmitting) {
 
-            toast.error("You have already borrowed this book.");
+            toast.error("You have borrowed this book.");
+            setIsSubmitting(false)
             return;
 
         }
@@ -125,7 +129,7 @@ const DetailsPage = () => {
 
 
 
-            form.reset();
+            // form.reset();
             return;
         }
 
@@ -228,7 +232,7 @@ const DetailsPage = () => {
                             </dialog>
 
 
-                                <Link to={`/pdf/${_id}`}>
+                                <Link to={`/pdf/${_id}`} >
                             <button className="btn bg-transparent text-white hover:bg-[#E59285]  border-2 border-orange-300 hover:border-none font-outfit">Read</button></Link>
                             
 

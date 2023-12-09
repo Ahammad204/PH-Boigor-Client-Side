@@ -94,7 +94,7 @@ const AddCategory = () => {
 
 
 
-                    <input className="btn btn-block text-white bg-[#E59285] hover:bg-[#E59285] " type="submit" value="Add Brand" />
+                    <input className="btn btn-block text-white bg-[#f04336] hover:bg-[#f04336] " type="submit" value="Add Brand" />
                 </form>
             </div>
         </div>

@@ -108,6 +108,7 @@ const Navbar = () => {
                                     <button className="btn btn-sm btn-ghost">{user.displayName}</button>
 
                                 </li>
+                     
                                 <li>
                                     <button className="btn btn-sm  btn-ghost"
                                         onClick={logout}
