@@ -9,8 +9,8 @@
 # Admin 
  For login as liberian :
 
- - email: admin@gmail.com
- - password: 123456A#
+ - email: 
+ - password: 
 
  # live Link 
 
