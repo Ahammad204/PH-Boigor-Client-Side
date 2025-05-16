@@ -14,7 +14,7 @@ const AllBooks = () => {
     const [showAvailableBooks, setShowAvailableBooks] = useState(false);
    
 
-    const url = `https://phb-oigor-server-side.vercel.app/book` ;
+    const url = `https://ph-boigor-server-side.onrender.com/book` ;
 
     useEffect(() => {
         fetch(url )
@@ -25,7 +25,7 @@ const AllBooks = () => {
             });
     }, [url]);
 
-    if (user?.email !== import.meta.env.VITE_ADMIN_EMAIL) {
+    if (user?.role !== "admin") {
         return <Navigate to={"/"}></Navigate>;
     }
 
@@ -52,7 +52,7 @@ const AllBooks = () => {
             if (result.isConfirmed) {
 
 
-                fetch(`https://phb-oigor-server-side.vercel.app/book/${_id}`, {
+                fetch(`https://ph-boigor-server-side.onrender.com/book/${_id}`, {
 
                     credentials:'include',
                     method: 'DELETE'
@@ -72,7 +72,7 @@ const AllBooks = () => {
                             setCarts(remaining);
 
                             const fetchBooKIdData = async () => {
-                                const response = await fetch(`https://phb-oigor-server-side.vercel.app/${_id}`);
+                                const response = await fetch(`https://ph-boigor-server-side.onrender.com/${_id}`);
                                 const data = await response.json();
                                 console.log(data);
                         

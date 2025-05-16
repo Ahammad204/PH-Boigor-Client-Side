@@ -61,7 +61,7 @@ const PdfFile = () => {
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
-            const response = await fetch(`https://phb-oigor-server-side.vercel.app/book`);
+            const response = await fetch(`https://ph-boigor-server-side.onrender.com/book`);
             const data = await response.json();
             const filteredProducts = data.filter((item) => item._id === id);
             setBookDetails(filteredProducts[0]);

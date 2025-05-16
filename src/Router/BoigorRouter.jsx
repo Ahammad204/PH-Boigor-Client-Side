@@ -26,7 +26,7 @@ const router = createBrowserRouter([
 
             path:'/',
             element: <Home></Home>,
-            loader:()=> fetch('https://phb-oigor-server-side.vercel.app/category')
+            loader:()=> fetch('https://ph-boigor-server-side.onrender.com/category')
 
         },{
 

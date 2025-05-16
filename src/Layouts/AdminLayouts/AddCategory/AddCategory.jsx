@@ -8,7 +8,7 @@ const AddCategory = () => {
 
 
     const { user } = useContext(AuthContext)
-    if (user?.email !== import.meta.env.VITE_ADMIN_EMAIL) {
+    if (user?.role !== "admin") {
 
         return <Navigate to={"/"}></Navigate>
 
@@ -28,7 +28,7 @@ const AddCategory = () => {
         console.log(newCategory);
 
         //send data to the server
-        fetch('https://phb-oigor-server-side.vercel.app/category', {
+        fetch('https://ph-boigor-server-side.onrender.com/category', {
 
             method: 'POST',
             headers: {

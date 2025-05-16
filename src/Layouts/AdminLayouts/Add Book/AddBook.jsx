@@ -7,7 +7,7 @@ import { Navigate } from "react-router-dom";
 const AddBook = () => {
 
     const { user } = useContext(AuthContext)
-    if (user?.email !== import.meta.env.VITE_ADMIN_EMAIL) {
+    if (user?.role !== "admin") {
 
         return <Navigate to={"/"}></Navigate>
 
@@ -33,7 +33,7 @@ const AddBook = () => {
         console.log(newBook);
 
         //send data to the server
-        fetch('https://phb-oigor-server-side.vercel.app/book', {
+        fetch('https://ph-boigor-server-side.onrender.com/book', {
 
             credentials:'include',
             method: 'POST',

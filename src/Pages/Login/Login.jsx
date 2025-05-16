@@ -45,7 +45,7 @@ const Login = () => {
 
                 //Get Access Token 
 
-                axios.post('https://phb-oigor-server-side.vercel.app/jwt', user, { withCredentials: true })
+                axios.post('https://ph-boigor-server-side.onrender.com/jwt', user, { withCredentials: true })
                     .then(res => {
 
                         console.log(res.data)

@@ -6,7 +6,7 @@ import useAuth from "../Hooks/useAuth";
 const Navbar = () => {
 
     const { user, logout } = useAuth()
-    console.log(user)
+    console.log("from navbar",user)
 
 
     const setDarkMode = () => {
@@ -44,7 +44,7 @@ const Navbar = () => {
 
             {
 
-                user.email === import.meta.env.VITE_ADMIN_EMAIL &&
+                user.role === "admin" &&
                 <>
 
                     <li><NavLink to="/addBook">Add Book</NavLink></li>
@@ -99,13 +99,13 @@ const Navbar = () => {
                             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                                 <div className="w-10 rounded-full">
 
-                                    <img src={user.photoURL} alt={user.displayName} />
+                                    <img src={user.photo} alt={user.name} />
 
                                 </div>
                             </label>
                             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                                 <li>
-                                    <button className="btn btn-sm btn-ghost">{user.displayName}</button>
+                                    <button className="btn btn-sm btn-ghost">{user.name}</button>
 
                                 </li>
                      

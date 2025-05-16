@@ -27,13 +27,13 @@ const DetailsPage = () => {
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
-            const response = await fetch(`https://phb-oigor-server-side.vercel.app/book`);
+            const response = await fetch(`https://ph-boigor-server-side.onrender.com/book`);
             const data = await response.json();
             const filteredProducts = data.filter((item) => item._id === id);
             setBookDetails(filteredProducts[0]);
             setAvailableBooks(quantity)
 
-            const borrowedResponse = await fetch(`https://phb-oigor-server-side.vercel.app/borrowed?email=${email}`);
+            const borrowedResponse = await fetch(`https://ph-boigor-server-side.onrender.com/borrowed?email=${email}`);
             const borrowedData = await borrowedResponse.json();
             const hasBorrowed = borrowedData.find((borrowed) => borrowed.bookId === bookId);
 
@@ -81,7 +81,7 @@ const DetailsPage = () => {
             console.log(newBorrowed);
 
             //send data to the server
-            fetch('https://phb-oigor-server-side.vercel.app/borrowed', {
+            fetch('https://ph-boigor-server-side.onrender.com/borrowed', {
 
                 method: 'POST',
                 headers: {
@@ -104,7 +104,7 @@ const DetailsPage = () => {
 
                         toast.success("Book Borrowed SuccessFully");
 
-                        fetch(`https://phb-oigor-server-side.vercel.app/book/${id}`, {
+                        fetch(`https://ph-boigor-server-side.onrender.com/book/${id}`, {
                             method: 'PUT',
                             headers: {
                                 'content-type': 'application/json'
